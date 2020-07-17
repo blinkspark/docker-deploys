@@ -11,3 +11,6 @@ services:
     image: blinkspark/blocklist:latest
     volumes:
       - "./blocklist.txt:/blocklist.txt"
+  
+  tomato:
+    image: blinkspark/tomato-clock:latest
