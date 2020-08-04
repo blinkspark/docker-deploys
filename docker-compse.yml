@@ -1,16 +1,29 @@
-version: "3.8"
+version: "3"
 services:
   nginx:
     image: nginx:alpine
     ports:
-      - "80:80"
+      - "443:443"
     volumes:
       - "./nginx.conf:/etc/nginx/conf.d/default.conf"
+      - "./certs:/certs"
 
   blocklist:
     image: blinkspark/blocklist:latest
     volumes:
       - "./blocklist.txt:/blocklist.txt"
   
+  # use port 8080
   tomato:
     image: blinkspark/tomato-clock:latest
+
+  gitea:
+    image: gitea/gitea:1
+    ports:
+      - "3000:3000"
+    volumes:
+      - gitea:/data
+
+volumes:
+  gitea:
+    
